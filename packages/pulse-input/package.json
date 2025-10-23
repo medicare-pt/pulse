@@ -1,6 +1,6 @@
 {
   "name": "@medicare-pt/pulse-input",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "type": "module",
   "main": "dist/index.umd.js",
   "module": "dist/index.es.js",
@@ -14,7 +14,11 @@
     },
     "./pulse-input.css": "./dist/pulse-input.css"
   },
-  "files": ["dist"],
+  "files": [
+    "dist",
+    "package.json",
+    "README.md"
+  ],
   "scripts": {
     "serve": "vite",
     "build": "vite build && tsc -p tsconfig.build.json"

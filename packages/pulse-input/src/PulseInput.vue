@@ -9,6 +9,6 @@
 <style scoped>
 @reference "tailwindcss";
 div {
-  @apply text-red-500;
+  @apply text-[#f0f];
 }
 </style>

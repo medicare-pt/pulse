@@ -12,9 +12,6 @@ importers:
 
   ../../packages/demo:
     dependencies:
-      '@medicare-pt/pulse-input':
-        specifier: workspace:*
-        version: link:../pulse-input
       vue:
         specifier: ^3.5.22
         version: 3.5.22(typescript@5.9.3)

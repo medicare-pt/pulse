@@ -1,9 +1,10 @@
 {
     "name": "@medicare-pt/pulse-theme",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "type": "module",
-    "main": "index.js",
-    "files": [
-        "index.js"
-    ]
+    "main": "index.ts",
+    "files": ["index.ts"],
+    "dependencies": {
+        "tailwindcss": "^4.1.16"
+    }
 }

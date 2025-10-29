@@ -3,15 +3,18 @@ import PulseInput from '../../pulse-input/src/PulseInput.vue'
 </script>
 
 <template>
-  <main class="max-w-4xl bg-red">
-    <PulseInput _label="Nome"
+  <main class="max-w-4xl">
+    <PulseInput label="Nome"
       placeholder="Primeiro Ultimo"
       name="Pulse"
       value="Lorem Ipsum"
-      hint="Lorem Ipsum"
+      _hint="Lorem Ipsum"
+      _error="Lorem Ipsum"
     />
   </main>
 </template>
 
 <style scoped>
+@reference "tailwindcss";
+@config '../tailwind.config.js';
 </style>

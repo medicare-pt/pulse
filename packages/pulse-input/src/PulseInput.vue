@@ -37,10 +37,9 @@
 
 <style>
 @reference "tailwindcss";
+@config '../tailwind.config.js';
 
 .pulse-field { @apply relative; }
-
-.asd { @apply text-company-rose; }
 
 .pulse-label {
     @apply block text-xs text-gray-400 font-semibold mb-1;
@@ -64,7 +63,7 @@
         @apply cursor-not-allowed;
     }
     .pulse-label + & { @apply pt-6.5 pb-2; }
-    .err & { @apply ring-red-500 border-red-300; }
+    .err & { @apply ring-red border-red-300; }
 }
 
 .pulse-hint {
@@ -143,7 +142,6 @@ const uid = useId()
 
 const id = computed(() => props.id ?? `pulse-input-${uid}`)
 const name = computed(() => props.name ?? undefined)
-const hasLabel = computed(() => Boolean(props.label))
 const value = computed(() => String(props.modelValue||''))
 const describedby = computed(() => {
     const ids: string[] = []

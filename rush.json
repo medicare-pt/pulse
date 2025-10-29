@@ -15,6 +15,11 @@
       "shouldPublish": true
     },
     {
+      "packageName": "@medicare-pt/pulse-theme",
+      "projectFolder": "packages/pulse-theme",
+      "shouldPublish": true
+    },
+    {
       "packageName": "demo",
       "projectFolder": "packages/demo"
     }

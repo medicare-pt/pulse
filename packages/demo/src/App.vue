@@ -1,24 +1,17 @@
 <script setup lang="ts">
-import PulseInput from '@medicare-pt/pulse-input'
+import PulseInput from '../../pulse-input/src/PulseInput.vue'
 </script>
 
 <template>
-  <div>
-    <PulseInput />
-  </div>
+  <main class="max-w-4xl bg-red">
+    <PulseInput _label="Nome"
+      placeholder="Primeiro Ultimo"
+      name="Pulse"
+      value="Lorem Ipsum"
+      hint="Lorem Ipsum"
+    />
+  </main>
 </template>
 
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
 </style>

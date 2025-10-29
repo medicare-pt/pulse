@@ -2,8 +2,6 @@
 
 import { theme } from '@medicare-pt/pulse-theme'
 
-console.info({theme})
-
 module.exports = {
     presets: [theme],
     content: ['./src/**/*.{vue,js,ts}'],

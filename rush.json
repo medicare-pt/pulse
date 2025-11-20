@@ -20,6 +20,11 @@
       "shouldPublish": true
     },
     {
+      "packageName": "@medicare-pt/pulse-tokens",
+      "projectFolder": "packages/pulse-tokens",
+      "shouldPublish": true
+    },
+    {
       "packageName": "demo",
       "projectFolder": "packages/demo"
     }

@@ -1,79 +1,137 @@
 <template>
-    <div class="pulse-field"
-        :class="{ 'err':error }">
-        <label v-if="label"
-            class="pulse-label">
+    <div :class="{
+        'pulse-error': error,
+        'pulse-success': success,
+        'pulse-disabled': disabled,
+    }">
+        <label :for="id" v-if="labelOutside||icon"
+            class="pulse-label outside">
             {{ label }}
         </label>
-        <input v-bind="attrs"
-            @input="onInput"
-            @change="onChange"
-            @focus="onFocus"
-            @blur="onBlur"
-            :id="id"
-            :type="type"
-            :name="name"
-            :value="value"
-            :disabled="disabled"
-            :readonly="readonly"
-            :required="required"
-            :aria-invalid="error?'true':'false'"
-            :aria-describedby="describedby"
-            :aria-required="required || undefined"
-            :autocapitalize="autocapitalize"
-            :autocomplete="autocomplete"
-            :autofocus="autofocus"
-            :spellcheck="spellcheck"
-            :placeholder="placeholder"
-            :inputmode="inputmode as any"
-            class="pulse-input"
-        />
+        <label class="pulse-field">
+            <span v-if="label&&!icon"
+                class="pulse-label inside">
+                {{ label }}
+            </span>
+            <div v-if="icon"
+                class="pulse-input-icon left">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z" />
+                </svg>
+            </div>
+            <input v-bind="attrs"
+                @input="onInput"
+                @change="onChange"
+                @focus="onFocus"
+                @blur="onBlur"
+                :id="id"
+                :type="type"
+                :name="name"
+                :value="value"
+                :disabled="disabled"
+                :readonly="readonly"
+                :required="required"
+                :aria-invalid="error?'true':'false'"
+                :aria-describedby="describedby"
+                :aria-required="required || undefined"
+                :autocapitalize="autocapitalize"
+                :autocomplete="autocomplete"
+                :autofocus="autofocus"
+                :spellcheck="spellcheck"
+                :placeholder="placeholder"
+                :inputmode="inputmode as any"
+                class="pulse-input"
+            />
+            <div v-if="!icon && iconRight"
+                class="pulse-input-icon right">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z" />
+                </svg>
+            </div>
+        </label>
+        <div v-if="error || hint"
+            class="pulse-hint">
+            <svg v-if="hintIcon"
+                viewBox="0 0 24 24" fill="none" stroke-width="2" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+            </svg>
+            <p>{{ hintMessage }}</p>
+        </div>
+        <slot />
     </div>
-    <p v-if="(typeof error === 'string') || hint" class="pulse-hint">
-        {{ error || hint }}
-    </p>
-    <slot />
 </template>
 
 <style>
 @reference "tailwindcss";
 @config '../tailwind.config.js';
 
-.pulse-field { @apply relative; }
-
 .pulse-label {
-    @apply block text-xs text-gray-400 font-semibold mb-1;
-    @apply absolute top-0 left-0 ml-[18px] mt-2.5;
-    .err & { @apply text-red-400; }
+    & { @apply block label text-black pointer-events-none; }
+    &.outside { @apply pl-1 mb-1; }
+    &.inside { @apply absolute top-0 left-0 ml-5 mt-3; }
+    &.inside + .pulse-input { @apply pt-7 pb-2; }
+}
+
+.pulse-field {
+    & {
+        @apply flex items-center relative;
+        @apply bg-white text-base text-gray-500 placeholder:text-gray-400;
+        @apply border border-gray-200;
+        @apply rounded-lg w-full;
+        @apply transition-all;
+        @apply focus-within:border-gray-200;
+        @apply focus-within:ring ring-offset-1 ring-gray-600;
+    }
 }
 
 .pulse-input {
-    @apply transition-all;
-    @apply text-base font-semibold placeholder:text-gray-300;
-    @apply bg-white border-2 border-gray-300;
-    @apply rounded-lg w-full;
-    @apply px-4 py-2;
-    &:focus {
-        @apply border-gray-200;
-        @apply ring-2 ring-offset-1 ring-gray-600;
-        @apply outline-none;
+    & {
+        @apply bg-white w-full;
+        @apply text-base text-gray-500;
+        @apply px-5 py-3 rounded-lg
     }
-    &:disabled {
-        @apply opacity-75;
-        @apply cursor-not-allowed;
+    &:focus { @apply outline-none; }
+}
+
+.pulse-input-icon {
+    & {
+        @apply absolute top-0;
+        @apply flex items-center;
+        @apply h-full pointer-events-none;
     }
-    .pulse-label + & { @apply pt-6.5 pb-2; }
-    .err & { @apply ring-red border-red-300; }
+    & svg { @apply flex-none size-5 }
+    & + input { @apply pl-9; }
+    &.left { @apply left-0 pl-3; }
+    &.left + input { @apply pl-10; }
+    &.right { @apply right-0 justify-end pr-4; }
+    input:has(+ &.right) { @apply pr-13; }
 }
 
 .pulse-hint {
-    @apply text-gray-500 text-sm;
-    @apply my-1 px-2;
-    .err+& { @apply text-red-600; }
+    & {
+        @apply flex mt-1 px-0.5;
+        @apply text-gray-600 caption-sm whitespace-pre-line;
+    }
+    & svg { @apply flex-none size-5 mr-1 mt-px; }
+    & p { @apply mt-[.1875rem]; }
 }
 
-.pulse-input-wrapper {
-    @apply flex items-center
+.pulse-disabled { &{}
+    .pulse-label { @apply text-gray-500; }
+    .pulse-field, .pulse-input { @apply bg-gray-100 border-gray-200; }
+    .pulse-input { @apply text-gray-400 cursor-not-allowed; }
+}
+
+.pulse-success { &{}
+    .pulse-field { @apply border-green-400; }
+}
+
+.pulse-error { &{}
+    .pulse-field { @apply bg-red-50 border-red-400; }
+    .pulse-input { @apply bg-red-50 text-red; }
+    .pulse-input-icon svg[fill="currentColor"] { @apply fill-red; }
+    .pulse-input-icon svg[stroke="currentColor"] { @apply stroke-red }
+    .pulse-hint { @apply text-red; }
 }
 </style>
 
@@ -101,14 +159,19 @@ type PulseInputType =
 type PulseInputValue = string | number | null
 
 interface PulseInputProps {
-    modelValue?: PulseInputValue
+    modelValue?: PulseInputValue,
+    value?: string,
     type?: PulseInputType
     label?: string
+    labelOutside?: boolean
     id?: string
     name?: string
     placeholder?: string
     hint?: string
-    error?: string | boolean
+    hintIcon?: string
+    hintError?: string
+    error?: boolean
+    success?: boolean
     disabled?: boolean
     readonly?: boolean
     required?: boolean
@@ -117,6 +180,8 @@ interface PulseInputProps {
     autofocus?: boolean
     spellcheck?: boolean | 'true' | 'false'
     inputmode?: PulseInputType
+    iconRight?: string
+    icon?: string
 }
 
 const props = withDefaults(defineProps<PulseInputProps>(), {
@@ -137,12 +202,13 @@ const emit = defineEmits<{
     (event: 'input', value: Event): void
 }>()
 
-const attrs = useAttrs()
 const uid = useId()
+const attrs = useAttrs()
 
 const id = computed(() => props.id ?? `pulse-input-${uid}`)
 const name = computed(() => props.name ?? undefined)
-const value = computed(() => String(props.modelValue||''))
+const value = computed(() => String(props.value ?? props.modelValue ?? ''))
+const hintMessage = computed(() => (props.error && String(props.hintError ?? '').length > 0) ? props.hintError : props.hint)
 const describedby = computed(() => {
     const ids: string[] = []
     if (props.error) {

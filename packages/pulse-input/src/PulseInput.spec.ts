@@ -1,3 +1,4 @@
+import 'jest'
 import { mount } from '@vue/test-utils'
 import PulseInput from './PulseInput.vue'
 

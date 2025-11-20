@@ -1,0 +1,10 @@
+{
+    "name": "@medicare-pt/pulse-tokens",
+    "version": "0.1.0",
+    "type": "module",
+    "files": ["index.json"],
+    "exports": {
+        ".": "./src/index.ts",
+        "./index.json": "./src/index.json"
+    }
+}

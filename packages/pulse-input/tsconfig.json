@@ -1,6 +1,16 @@
 {
     "files": ["env.d.ts"],
-    "compilerOptions": { "esModuleInterop": true },
+    "compilerOptions": {
+        "declaration": true,
+        "composite": true,
+        "emitDeclarationOnly": true,
+        "esModuleInterop": true
+    },
+    "include": [
+        "src/**/*",
+        "**/*.spec.ts",
+        "**/*.test.ts"
+    ],
     "types": ["jest", "node"],
     "references": [
         { "path": "./tsconfig.app.json" },

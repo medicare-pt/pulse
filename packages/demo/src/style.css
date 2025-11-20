@@ -3,6 +3,10 @@
 @config '../tailwind.config.js';
 
 body {
-    @apply flex items-center justify-center;
+    @apply flex items-center justify-center bg-gray-50;
     @apply w-screen h-screen;
+}
+
+[id=app] {
+    @apply w-full;
 }

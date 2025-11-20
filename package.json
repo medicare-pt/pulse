@@ -1,5 +1,8 @@
 {
   "name": "pulse",
   "private": true,
-  "version": "0.0.2"
+  "version": "0.0.2",
+  "scripts": {
+    "serve": "npm --prefix ./packages/demo run serve"
+  }
 }

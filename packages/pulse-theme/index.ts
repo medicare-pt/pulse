@@ -1,10 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 
+import tokens from '@medicare-pt/pulse-tokens'
+
 import plugin from 'tailwindcss/plugin'
 import defaultTheme from 'tailwindcss/defaultTheme'
 import type { PluginAPI } from "tailwindcss/plugin"
-
-import tokens from '@medicare-pt/pulse-tokens'
 
 import { color, mapColors, mapTypography } from './helpers'
 

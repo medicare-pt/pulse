@@ -5,6 +5,7 @@
     "main": "index.ts",
     "files": ["index.ts"],
     "dependencies": {
+        "@medicare-pt/pulse-tokens": "workspace:*",
         "tailwindcss": "^4.1.16"
     }
 }

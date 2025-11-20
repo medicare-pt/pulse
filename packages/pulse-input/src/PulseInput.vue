@@ -113,20 +113,20 @@
         @apply text-gray-600 caption-sm whitespace-pre-line;
     }
     & svg { @apply flex-none size-5 mr-1 mt-px; }
-    & p { @apply mt-[.1875rem]; }
+    & p { @apply mt-0.75; }
 }
 
-.pulse-disabled { &{}
+.pulse-disabled {
     .pulse-label { @apply text-gray-500; }
     .pulse-field, .pulse-input { @apply bg-gray-100 border-gray-200; }
     .pulse-input { @apply text-gray-400 cursor-not-allowed; }
 }
 
-.pulse-success { &{}
+.pulse-success {
     .pulse-field { @apply border-green-400; }
 }
 
-.pulse-error { &{}
+.pulse-error {
     .pulse-field { @apply bg-red-50 border-red-400; }
     .pulse-input { @apply bg-red-50 text-red; }
     .pulse-input-icon svg[fill="currentColor"] { @apply fill-red; }

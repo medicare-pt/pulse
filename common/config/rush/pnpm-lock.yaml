@@ -49,6 +49,9 @@ importers:
 
   ../../packages/pulse-input:
     dependencies:
+      '@medicare-pt/pulse-theme':
+        specifier: workspace:*
+        version: link:../pulse-theme
       '@tailwindcss/vite':
         specifier: ^4.1.16
         version: 4.1.16(rolldown-vite@7.1.14(@types/node@24.9.2)(jiti@2.6.1))
@@ -98,6 +101,9 @@ importers:
 
   ../../packages/pulse-theme:
     dependencies:
+      '@medicare-pt/pulse-tokens':
+        specifier: workspace:*
+        version: link:../pulse-tokens
       tailwindcss:
         specifier: ^4.1.16
         version: 4.1.16
